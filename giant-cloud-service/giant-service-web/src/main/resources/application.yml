@@ -1,5 +1,5 @@
 server:
-   port: 9202
+   port: 9204
   
 spring:
    application:
@@ -7,7 +7,7 @@ spring:
    datasource:
       username: root
       password:
-      url: jdbc:mysql://127.0.0.1:3306/giant_qrcode?autoReconnect=true&failOverReadOnly=false&useUnicode=true&queryTimeout=2400&characterEncoding=utf-8&allowMultiQueries=true
+      url: jdbc:mysql://127.0.0.1:3306/giant_web?autoReconnect=true&failOverReadOnly=false&useUnicode=true&queryTimeout=2400&characterEncoding=utf-8&allowMultiQueries=true
       driver-class-name: com.mysql.cj.jdbc.Driver
 #      type: com.zaxxer.hikari.HikariDataSource
 #      hikari:

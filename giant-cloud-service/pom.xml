@@ -11,9 +11,47 @@
 
     <artifactId>giant-cloud-service</artifactId>
     <packaging>pom</packaging>
+
     <modules>
+        <module>giant-service-bike</module>
         <module>giant-service-qrcode</module>
+        <module>giant-service-user</module>
+        <module>giant-service-web</module>
     </modules>
 
+    <dependencies>
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
+        </dependency>
 
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.mybatis.spring.boot</groupId>
+            <artifactId>mybatis-spring-boot-starter</artifactId>
+            <version>${mybatis-spring-cloud-starter.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <scope>runtime</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>com.giant</groupId>
+            <artifactId>giant-cloud-model</artifactId>
+            <version>${giant-cloud-model.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.giant</groupId>
+            <artifactId>giant-cloud-common</artifactId>
+            <version>${giant-cloud-common.version}</version>
+        </dependency>
+    </dependencies>
 </project>
