@@ -1,0 +1,39 @@
+server:
+   port: 9201
+  
+spring:
+   application:
+      name: @pom.artifactId@
+   datasource:
+      username: root
+      password:
+      url: jdbc:mysql://127.0.0.1:3306/giant_qrcode?autoReconnect=true&failOverReadOnly=false&useUnicode=true&queryTimeout=2400&characterEncoding=utf-8&allowMultiQueries=true
+      driver-class-name: com.mysql.cj.jdbc.Driver
+#      type: com.zaxxer.hikari.HikariDataSource
+#      hikari:
+#         minimum-idle: 10
+#         maximum-pool-size: 50
+#         auto-commit: true
+#         idle-timeout: 30000
+#         max-lifetime: 1800000
+#         connection-timeout: 30000
+#         connection-test-query: SELECT 1
+
+eureka:
+   client:
+      serviceUrl:
+         defaultZone: http://localhost:9200/eureka/
+      register-with-eureka: true
+      fetch-registry: true
+   instance:
+      prefer-ip-address: true
+      instance-id: ${spring.cloud.client.ip-address}:${server.port}
+
+mybatis:
+   mapper-locations: classpath:/mapper/qrcode/*.xml
+
+app:
+   id: giant-service-qrcode
+   
+apollo:
+   meta: http://localhost:8080

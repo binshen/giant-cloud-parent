@@ -1,0 +1,15 @@
+server:
+   host: localhost
+   port: 9200
+   
+spring:
+   application:
+      name: @pom.artifactId@
+   
+eureka:
+   client:
+      serviceUrl:
+         defaultZone: http://${server.host}:${server.port}/eureka/
+      fetch-registry: false
+      register-with-eureka: false
+    

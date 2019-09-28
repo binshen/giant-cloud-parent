@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.giant.dao.qrcode.BaseQRcodeMapper">
+	<resultMap id="BaseResultMap" type="com.giant.model.qrcode.BaseQRcode">
+		<result column="id" property="id" jdbcType="INTEGER" />
+		<result column="name" property="name" jdbcType="VARCHAR" />
+		<result column="status" property="status" jdbcType="VARCHAR" />
+		<result column="sku" property="sku" jdbcType="VARCHAR" />
+		<result column="is_ex_data" property="isExData" jdbcType="VARCHAR" /><!-- -->
+		<result column="qrcode" property="qrcode" jdbcType="VARCHAR" />
+		<result column="ident" property="ident" jdbcType="VARCHAR" />
+		<result column="vinno" property="vinno" jdbcType="VARCHAR" />
+		<result column="act_status" property="actStatus" jdbcType="VARCHAR" /><!-- 激活状态 -->
+		<result column="act_code" property="actCode" jdbcType="VARCHAR" />
+		<result column="store_code" property="storeCode" jdbcType="VARCHAR" />
+		<result column="bd_status" property="bdStatus" jdbcType="VARCHAR" /><!-- 绑定状态 -->
+		<result column="user_id" property="userId" jdbcType="INTEGER" />
+		<result column="act_date" property="actDate" jdbcType="VARCHAR" />
+		<result column="bind_date" property="bindDate" jdbcType="VARCHAR" />
+		<result column="proddate" property="proddate" jdbcType="VARCHAR" />
+		<result column="prodfact" property="prodfact" jdbcType="VARCHAR" />
+		<result column="mono" property="mono" jdbcType="VARCHAR" />
+		<result column="lineid" property="lineid" jdbcType="VARCHAR" />
+		<result column="frame_date" property="frameDate" jdbcType="VARCHAR" />
+		<result column="chkdate" property="chkdate" jdbcType="VARCHAR" />
+		<result column="qrdate" property="qrdate" jdbcType="VARCHAR" />
+		<result column="uploadstat" property="uploadstat" jdbcType="VARCHAR" />
+		<result column="uploaddate" property="uploaddate" jdbcType="VARCHAR" />
+		<result column="part_size" property="partSize" jdbcType="VARCHAR" />
+		<result column="name_brief" property="nameBrief" jdbcType="VARCHAR" />
+		<result column="create_date" property="createDate" jdbcType="VARCHAR" />
+		<result column="update_date" property="updateDate" jdbcType="VARCHAR" />
+		<result column="if_sku_in" property="ifSkuIn" jdbcType="VARCHAR" />
+		<result column="state" property="state" jdbcType="VARCHAR" />
+		<result column="motor_number" property="motorNumber" jdbcType="VARCHAR" />
+		<result column="cert_no" property="certNo" jdbcType="VARCHAR" />
+	</resultMap>
+
+	<sql id="Base_Column_List">
+		id, name, status, sku, is_ex_data, qrcode, ident, vinno, 
+		act_status,
+		act_code, store_code,
+		bd_status, user_id, act_date,
+		bind_date, proddate, prodfact, mono, lineid,
+		frame_date,
+		chkdate,
+		qrdate, uploadstat, uploaddate, part_size, name_brief, create_date,
+		update_date,
+		if_sku_in,state, motor_number, cert_no
+	</sql>
+
+	<select id="selectAllBaseQRcode" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from t_base_qrcode
+	</select>
+
+	<select id="selectSku" resultType="java.lang.String">
+		select distinct sku from
+		t_base_qrcode
+	</select>
+</mapper>
