@@ -2,7 +2,6 @@ package com.giant.cloud.service.api;
 
 import com.giant.cloud.model.qrcode.BaseQRcode;
 import com.giant.cloud.service.service.BaseQRcodeService;
-import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -13,11 +12,14 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/baseQRcode")
-@Api
 public class BaseQRcodeApi {
 
-    @Autowired
     private BaseQRcodeService baseQRcodeService;
+
+    @Autowired
+    public void setBaseQRcodeService(BaseQRcodeService baseQRcodeService) {
+        this.baseQRcodeService = baseQRcodeService;
+    }
 
     @ResponseBody
     @RequestMapping("/searchBaseQRcode")
