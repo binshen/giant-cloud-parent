@@ -1,0 +1,24 @@
+server:
+   port: 9300
+  
+spring:
+   application:
+      name: @pom.artifactId@
+   cloud:
+      gateway:
+         discovery:
+            locator:
+               enabled: false
+               lowerCaseServiceId: true
+         routes:
+            - id: giant-service-qrcode
+              uri: http://localhost:9902
+              predicates:
+                 - Path=/api/**
+#              filters:
+#                 - StripPrefix=1
+##                 - name: RateLimiter
+#                 - name: Hystrix
+#                   args:
+#                      name: fallback_qrcode
+#                      fallbackUri: forward:/fallback_qrcode

@@ -14,6 +14,7 @@
         <module>giant-cloud-service</module>
         <module>giant-cloud-model</module>
         <module>giant-cloud-common</module>
+        <module>giant-cloud-gateway</module>
     </modules>
 
     <parent>
