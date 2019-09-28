@@ -4,20 +4,25 @@ server:
 spring:
    application:
       name: @pom.artifactId@
+   zipkin:
+      base-url: http://localhost:9411/
+      sleuth:
+         sampler:
+            probability: 1.0
    datasource:
       username: root
       password:
       url: jdbc:mysql://127.0.0.1:3306/giant_web?autoReconnect=true&failOverReadOnly=false&useUnicode=true&queryTimeout=2400&characterEncoding=utf-8&allowMultiQueries=true
       driver-class-name: com.mysql.cj.jdbc.Driver
-#      type: com.zaxxer.hikari.HikariDataSource
-#      hikari:
-#         minimum-idle: 10
-#         maximum-pool-size: 50
-#         auto-commit: true
-#         idle-timeout: 30000
-#         max-lifetime: 1800000
-#         connection-timeout: 30000
-#         connection-test-query: SELECT 1
+      type: com.zaxxer.hikari.HikariDataSource
+      hikari:
+         minimum-idle: 10
+         maximum-pool-size: 50
+         auto-commit: true
+         idle-timeout: 30000
+         max-lifetime: 1800000
+         connection-timeout: 30000
+         connection-test-query: SELECT 1
 
 management:
    endpoints:

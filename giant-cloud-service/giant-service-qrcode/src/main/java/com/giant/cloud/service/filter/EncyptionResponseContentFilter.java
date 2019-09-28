@@ -36,12 +36,10 @@ public class EncyptionResponseContentFilter implements Filter {
 		} else {
 			chain.doFilter(request, response);
 		}
-		// System.out.println(responseContent);
 	}
 
 	@Override
 	public void destroy() {
-		// TODO Auto-generated method stub
 
 	}
 
