@@ -16,4 +16,8 @@ public class BaseQRcodeService {
     public List<BaseQRcode> selectAllBaseQRcode() {
         return baseQRcodeMapper.selectAllBaseQRcode();
     }
+
+    public List<String> selectSku() {
+        return baseQRcodeMapper.selectSku();
+    }
 }

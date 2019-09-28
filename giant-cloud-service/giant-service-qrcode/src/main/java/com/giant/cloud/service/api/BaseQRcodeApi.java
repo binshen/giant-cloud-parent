@@ -21,4 +21,10 @@ public class BaseQRcodeApi {
     public List<BaseQRcode> selectAllBaseQRcode() {
         return baseQRcodeService.selectAllBaseQRcode();
     }
+
+    @RequestMapping("/selectSku")
+    @ResponseBody
+    public List<String> selectSku() {
+        return baseQRcodeService.selectSku();
+    }
 }

@@ -9,4 +9,6 @@ import java.util.List;
 public interface BaseQRcodeMapper {
 
     List<BaseQRcode> selectAllBaseQRcode();
+
+    List<String> selectSku();
 }
