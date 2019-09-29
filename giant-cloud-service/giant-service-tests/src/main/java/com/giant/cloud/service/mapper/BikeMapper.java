@@ -1,16 +1,15 @@
 package com.giant.cloud.service.mapper;
 
-import com.giant.cloud.model.qrcode.BaseQRcode;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Select;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
 @Mapper
 @Repository
-public interface BaseQRcodeMapper {
+public interface BikeMapper {
 
-    List<BaseQRcode> selectAllBaseQRcode();
-
-    List<String> selectSku();
+    @Select("SELECT bikemodel_name FROM t_giant_bikemodel")
+    List<String> getBikeList();
 }

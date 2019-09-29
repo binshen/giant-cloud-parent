@@ -13,7 +13,7 @@ spring:
       master:
          username: root
          password:
-         url: jdbc:mysql://127.0.0.1:3306/giant_qrcode?autoReconnect=true&failOverReadOnly=false&useUnicode=true&queryTimeout=2400&characterEncoding=utf-8&allowMultiQueries=true
+         jdbc-url: jdbc:mysql://127.0.0.1:3306/giant_user?autoReconnect=true&failOverReadOnly=false&useUnicode=true&queryTimeout=2400&characterEncoding=utf-8&allowMultiQueries=true
          driver-class-name: com.mysql.cj.jdbc.Driver
          type: com.zaxxer.hikari.HikariDataSource
          hikari:
@@ -27,11 +27,11 @@ spring:
       slave:
          username: root
          password:
-         url: jdbc:mysql://127.0.0.1:3306/giant_qrcode?autoReconnect=true&failOverReadOnly=false&useUnicode=true&queryTimeout=2400&characterEncoding=utf-8&allowMultiQueries=true
+         jdbc-url: jdbc:mysql://127.0.0.1:3306/giant_bike?autoReconnect=true&failOverReadOnly=false&useUnicode=true&queryTimeout=2400&characterEncoding=utf-8&allowMultiQueries=true
          driver-class-name: com.mysql.cj.jdbc.Driver
          type: com.zaxxer.hikari.HikariDataSource
          hikari:
-            minimum-idle: 20
+            minimum-idle: 10
             maximum-pool-size: 50
             auto-commit: true
             idle-timeout: 30000

@@ -1,6 +1,7 @@
 package com.giant.cloud.service.api;
 
 import com.giant.cloud.service.remote.QRcodeServiceRemote;
+import com.giant.cloud.service.service.DataSourceTestService;
 import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +16,10 @@ public class TestApi {
 
     @Autowired
     private QRcodeServiceRemote qRcodeServiceRemote;
+
+
+    @Autowired
+    private DataSourceTestService dataSourceTestService;
 
 
     /**
@@ -39,5 +44,17 @@ public class TestApi {
      */
     String doTestFallback() {
         return "服务器故障，请稍后重试";
+    }
+
+
+
+    @RequestMapping("/master")
+    public String testMaster() {
+        return dataSourceTestService.testMaster();
+    }
+
+    @RequestMapping("/slave")
+    public String testSlave() {
+        return dataSourceTestService.testSlave();
     }
 }

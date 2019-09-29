@@ -10,7 +10,6 @@ import org.mybatis.spring.boot.autoconfigure.ConfigurationCustomizer;
 import org.mybatis.spring.boot.autoconfigure.MybatisAutoConfiguration;
 import org.mybatis.spring.boot.autoconfigure.MybatisProperties;
 import org.springframework.beans.factory.ObjectProvider;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.boot.jdbc.DataSourceBuilder;
 import org.springframework.context.annotation.Bean;
@@ -33,23 +32,22 @@ public class DataSourceConfig extends MybatisAutoConfiguration {
         super(properties, interceptorsProvider, typeHandlersProvider, languageDriversProvider, resourceLoader, databaseIdProvider, configurationCustomizersProvider);
     }
 
-    @Bean(name="masterDataSource")
     @Primary
-    @ConfigurationProperties("spring.datasource.hikari.master")
+    @Bean(name="masterDataSource")
+    @ConfigurationProperties("spring.datasource.master")
     public DataSource masterDataSource(){
         return DataSourceBuilder.create().type(HikariDataSource.class).build();
     }
 
     @Bean(name="slaveDataSource")
-    @Primary
-    @ConfigurationProperties("spring.datasource.hikari.slave")
+    @ConfigurationProperties("spring.datasource.slave")
     public DataSource slaveDataSource(){
         return DataSourceBuilder.create().type(HikariDataSource.class).build();
     }
 
     @Bean
     @Override
-    public SqlSessionFactory sqlSessionFactory(@Qualifier("dataSource") DataSource dataSource) throws Exception {
+    public SqlSessionFactory sqlSessionFactory(DataSource dataSource) throws Exception {
         return super.sqlSessionFactory(dataSource());
     }
 
