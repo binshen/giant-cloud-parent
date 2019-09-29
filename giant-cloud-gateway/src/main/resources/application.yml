@@ -15,8 +15,8 @@ spring:
               uri: http://localhost:9902
               predicates:
                  - Path=/api/**
-#              filters:
-#                 - StripPrefix=1
+              filters:
+                 - StripPrefix=1
 ##                 - name: RateLimiter
 #                 - name: Hystrix
 #                   args:
