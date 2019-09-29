@@ -17,6 +17,7 @@
         <module>giant-service-qrcode</module>
         <module>giant-service-user</module>
         <module>giant-service-web</module>
+        <module>giant-service-tests</module>
     </modules>
 
     <dependencies>
@@ -28,6 +29,16 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-openfeign</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-netflix-hystrix</artifactId>
         </dependency>
 
         <dependency>
