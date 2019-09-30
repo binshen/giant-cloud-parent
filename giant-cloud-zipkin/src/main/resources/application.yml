@@ -5,3 +5,9 @@ armeria:
   ports:
     - port: 9410
       protocol: HTTP
+
+management:
+  metrics:
+    web:
+      server:
+        auto-time-requests: false

@@ -4,7 +4,6 @@ import com.giant.cloud.service.config.Master;
 import com.giant.cloud.service.config.Slave;
 import com.giant.cloud.service.mapper.BikeMapper;
 import com.giant.cloud.service.mapper.UserMapper;
-import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
