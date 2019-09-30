@@ -1,0 +1,7 @@
+server:
+  port: 9411
+
+armeria:
+  ports:
+    - port: 9410
+      protocol: HTTP

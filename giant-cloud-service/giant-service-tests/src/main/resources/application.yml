@@ -1,5 +1,16 @@
 server:
    port: 9999
+   tomcat:
+      # 最大线程数
+      max-threads: 100
+      # 最小线程数
+      min-spare-threads: 10
+      # 队列长度
+      accept-count: 50
+      # 最大链接数
+      max-connections: 1000
+      #链接建立超时时间
+      connection-timeout: 60000
 
 spring:
    application:

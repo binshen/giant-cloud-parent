@@ -20,14 +20,12 @@ public class DataSourceTestService {
     BikeMapper bikeMapper;
 
     @Master
-    public String testMaster() {
-        List<String> userList = userMapper.getUserList();
-        return StringUtils.join(userList.toArray(), ",");
+    public List<String> testMaster() {
+        return userMapper.getUserList();
     }
 
     @Slave
-    public String testSlave() {
-        List<String> userList = bikeMapper.getBikeList();
-        return StringUtils.join(userList.toArray(), ",");
+    public List<String> testSlave() {
+        return bikeMapper.getBikeList();
     }
 }

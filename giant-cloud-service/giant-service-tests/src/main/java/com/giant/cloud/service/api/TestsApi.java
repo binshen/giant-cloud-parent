@@ -6,13 +6,14 @@ import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
 @RestController
 @RequestMapping("/tests")
-public class TestApi {
+public class TestsApi {
 
     @Autowired
     private QRcodeServiceRemote qRcodeServiceRemote;
@@ -47,14 +48,25 @@ public class TestApi {
     }
 
 
-
+    /**
+     * 测试对【Master】数据源的调用
+     * @return
+     */
+    @ResponseBody
     @RequestMapping("/master")
-    public String testMaster() {
-        return dataSourceTestService.testMaster();
+    public List<String> testMasterDataSource() {
+        List<String> results = dataSourceTestService.testMaster();
+        // 返回结果行数过多，此处暂时只返回前1000条记录
+        return results.subList(0, 1000);
     }
 
+    /**
+     * 测试对【slave】数据源的调用
+     * @return
+     */
+    @ResponseBody
     @RequestMapping("/slave")
-    public String testSlave() {
+    public List<String> testSlaveDataSource() {
         return dataSourceTestService.testSlave();
     }
 }
