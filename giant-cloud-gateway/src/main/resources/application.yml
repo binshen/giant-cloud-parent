@@ -4,6 +4,10 @@ server:
 spring:
    application:
       name: @pom.artifactId@
+   redis:
+      host: localhost
+      port: 6379
+      database: 0
    cloud:
       gateway:
          discovery:
@@ -17,10 +21,14 @@ spring:
                  - Path=/api/**
               filters:
                  - StripPrefix=1
-##                 - name: RateLimiter
                  - name: Hystrix
                    args:
                       name: fallbackcmd
                       fallbackUri: forward:/fallback
+                 - name: RequestRateLimiter
+                   args:
+                      key-resolver: "#{@remoteAddrKeyResolver}"
+                      redis-rate-limiter.replenishRate: 1
+                      redis-rate-limiter.burstCapacity: 5
 
 hystrix.command.fallbackcmd.execution.isolation.thread.timeoutInMilliseconds: 5000
