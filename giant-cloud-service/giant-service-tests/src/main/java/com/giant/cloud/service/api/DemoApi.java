@@ -1,10 +1,13 @@
 package com.giant.cloud.service.api;
 
+import com.ctrip.framework.apollo.Config;
+import com.ctrip.framework.apollo.spring.annotation.ApolloConfig;
 import com.giant.cloud.service.remote.QRcodeServiceRemote;
 import com.giant.cloud.service.service.DataSourceTestService;
 import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -12,8 +15,8 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 @RestController
-@RequestMapping("/tests")
-public class TestsApi {
+@RequestMapping("/demo")
+public class DemoApi {
 
     @Autowired
     private QRcodeServiceRemote qRcodeServiceRemote;
@@ -68,5 +71,22 @@ public class TestsApi {
     @RequestMapping("/slave")
     public List<String> testSlaveDataSource() {
         return dataSourceTestService.testSlave();
+    }
+
+
+    /**
+     * 测试从携程Apollo配置中心获取动态配置信息
+     * @return
+     */
+    @ApolloConfig
+    private Config config;
+
+    @Value("${userName}")
+    private String userName;
+
+    @ResponseBody
+    @RequestMapping("/config")
+    public String testApolloConfig() {
+        return "Hello, " + userName + ", Your age is " + config.getProperty("userAge", "25");
     }
 }
