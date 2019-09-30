@@ -18,7 +18,9 @@ spring:
               filters:
                  - StripPrefix=1
 ##                 - name: RateLimiter
-#                 - name: Hystrix
-#                   args:
-#                      name: fallback_qrcode
-#                      fallbackUri: forward:/fallback_qrcode
+                 - name: Hystrix
+                   args:
+                      name: fallbackcmd
+                      fallbackUri: forward:/fallback
+
+hystrix.command.fallbackcmd.execution.isolation.thread.timeoutInMilliseconds: 5000
