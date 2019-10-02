@@ -10,6 +10,13 @@ spring:
       database: 0
    cloud:
       gateway:
+#         globalcors:
+#            cors-configurations:
+#               '[/**]':
+#                  allowedOrigins: "*"
+#                  allowedMethods: "*"
+#                  allowCredentials: true
+# https://segmentfault.com/q/1010000018999464/a-1020000019001200
          discovery:
             locator:
                enabled: false
