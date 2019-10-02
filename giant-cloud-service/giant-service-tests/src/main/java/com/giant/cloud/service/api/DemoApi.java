@@ -3,6 +3,7 @@ package com.giant.cloud.service.api;
 import com.ctrip.framework.apollo.Config;
 import com.ctrip.framework.apollo.spring.annotation.ApolloConfig;
 import com.giant.cloud.service.remote.QRcodeServiceRemote;
+import com.giant.cloud.service.remote.WebTestServiceRemote;
 import com.giant.cloud.service.service.DataSourceTestService;
 import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
 import org.apache.commons.lang.StringUtils;
@@ -21,6 +22,8 @@ public class DemoApi {
     @Autowired
     private QRcodeServiceRemote qRcodeServiceRemote;
 
+    @Autowired
+    private WebTestServiceRemote webTestServiceRemote;
 
     @Autowired
     private DataSourceTestService dataSourceTestService;
@@ -74,19 +77,24 @@ public class DemoApi {
     }
 
 
-    /**
-     * 测试从携程Apollo配置中心获取动态配置信息
-     * @return
-     */
-    @ApolloConfig
-    private Config config;
+//    /**
+//     * 测试从携程Apollo配置中心获取动态配置信息
+//     * @return
+//     */
+//    @ApolloConfig
+//    private Config config;
+//
+//    @Value("${userName}")
+//    private String userName;
+//
+//    @ResponseBody
+//    @RequestMapping("/config")
+//    public String testApolloConfig() {
+//        return "Hello, " + userName + ", Your age is " + config.getProperty("userAge", "25");
+//    }
 
-    @Value("${userName}")
-    private String userName;
-
-    @ResponseBody
-    @RequestMapping("/config")
-    public String testApolloConfig() {
-        return "Hello, " + userName + ", Your age is " + config.getProperty("userAge", "25");
+    @RequestMapping("/loadbalance")
+    public String doTestLoadBalance() {
+        return webTestServiceRemote.getTest();
     }
 }

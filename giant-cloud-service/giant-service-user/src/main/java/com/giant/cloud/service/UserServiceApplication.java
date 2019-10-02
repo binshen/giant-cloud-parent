@@ -7,8 +7,6 @@ import org.springframework.boot.web.servlet.ServletComponentScan;
 import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
 
 @EnableEurekaClient
-@MapperScan("com.giant.cloud.service.mapper")
-@ServletComponentScan("com.giant.cloud.service.filter")
 @SpringBootApplication
 public class UserServiceApplication {
 
