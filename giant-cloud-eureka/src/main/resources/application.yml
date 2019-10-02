@@ -1,6 +1,6 @@
 server:
    host: localhost
-   port: 9200
+   port: 10100
    
 spring:
    application:

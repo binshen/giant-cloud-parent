@@ -1,5 +1,5 @@
 server:
-   port: 9999
+   port: 10099
    tomcat:
       # 最大线程数
       max-threads: 100
@@ -53,7 +53,7 @@ spring:
 eureka:
    client:
       serviceUrl:
-         defaultZone: http://localhost:9200/eureka/
+         defaultZone: http://localhost:10100/eureka/
       register-with-eureka: true
       fetch-registry: true
    instance:
