@@ -1,4 +1,4 @@
-package com.giant.cloud.gateway.limiter;
+package com.giant.cloud.gateway.utils.limit;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Component;

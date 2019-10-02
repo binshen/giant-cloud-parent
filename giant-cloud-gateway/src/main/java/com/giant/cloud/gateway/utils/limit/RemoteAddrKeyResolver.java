@@ -1,4 +1,4 @@
-package com.giant.cloud.gateway.limiter;
+package com.giant.cloud.gateway.utils.limit;
 
 import org.springframework.cloud.gateway.filter.ratelimit.KeyResolver;
 import org.springframework.web.server.ServerWebExchange;
