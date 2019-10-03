@@ -30,31 +30,6 @@ public class DemoApi {
 
 
     /**
-     * 测试接口
-     * @return
-     */
-    @RequestMapping("/index")
-    @HystrixCommand(fallbackMethod = "doTestFallback")
-    public String index() {
-        List<String> skuList = qRcodeServiceRemote.selectSku();
-
-        //此处可以实现一堆业务逻辑
-        return StringUtils.join(skuList.toArray(), ",");
-    }
-
-    /**
-     * 熔断处理函数：
-     *     当qRcodeServiceRemote.selectSku返回异常时，
-     *     此处doTestFallback方法会被自动调用。
-     *     此处可以根据业务需求做一些善后处理，以保证整个调用链不会异常而瘫痪。
-     * @return
-     */
-    String doTestFallback() {
-        return "服务器故障，请稍后重试";
-    }
-
-
-    /**
      * 测试对【Master】数据源的调用
      * @return
      */
@@ -77,6 +52,12 @@ public class DemoApi {
     }
 
 
+    @RequestMapping("/loadbalance")
+    public String doTestLoadBalance() {
+        return webTestServiceRemote.getTest();
+    }
+
+
 //    /**
 //     * 测试从携程Apollo配置中心获取动态配置信息
 //     * @return
@@ -93,8 +74,28 @@ public class DemoApi {
 //        return "Hello, " + userName + ", Your age is " + config.getProperty("userAge", "25");
 //    }
 
-    @RequestMapping("/loadbalance")
-    public String doTestLoadBalance() {
-        return webTestServiceRemote.getTest();
+
+    /**
+     * 测试接口
+     * @return
+     */
+    @RequestMapping("/index")
+    @HystrixCommand(fallbackMethod = "doTestFallback")
+    public String index() {
+        List<String> skuList = qRcodeServiceRemote.selectSku();
+
+        //此处可以实现一堆业务逻辑
+        return StringUtils.join(skuList.toArray(), ",");
+    }
+
+    /**
+     * 熔断处理函数：
+     *     当qRcodeServiceRemote.selectSku返回异常时，
+     *     此处doTestFallback方法会被自动调用。
+     *     此处可以根据业务需求做一些善后处理，以保证整个调用链不会异常而瘫痪。
+     * @return
+     */
+    String doTestFallback() {
+        return "服务器故障，请稍后重试";
     }
 }
