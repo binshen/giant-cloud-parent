@@ -1,0 +1,27 @@
+version: '2'
+
+services:
+  giant-cloud-eureka:
+    build: giant-cloud-eureka
+    ports:
+      - "10100:10100"
+
+  giant-cloud-zipkin:
+    build: giant-cloud-zipkin
+    ports:
+      - "9411:9411"
+
+  giant-service-web:
+    build: giant-cloud-service/giant-service-web
+    ports:
+      - "10040:10040"
+
+  giant-service-tests:
+    build: giant-cloud-service/giant-service-tests
+    ports:
+      - "10099:10099"
+
+  giant-cloud-gateway:
+    build: giant-cloud-gateway
+    ports:
+      - "10000:10000"
