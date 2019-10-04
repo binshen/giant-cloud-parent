@@ -1,0 +1,63 @@
+server:
+   port: 10000
+  
+spring:
+   application:
+      name: @pom.artifactId@
+   redis:
+      host: docker.for.mac.host.internal
+      port: 6379
+      database: 0
+   cloud:
+      gateway:
+#         globalcors:
+#            cors-configurations:
+#               '[/**]':
+#                  allowedOrigins: "*"
+#                  allowedMethods: "*"
+#                  allowCredentials: true
+# https://segmentfault.com/q/1010000018999464/a-1020000019001200
+         discovery:
+            locator:
+               enabled: false
+               lowerCaseServiceId: true
+         routes:
+            - id: giant-service-tests
+              uri: http://docker.for.mac.host.internal:10099
+#              uri: lb://giant-service-web-load-balanced-service
+              predicates:
+                 - Path=/tests/**
+              filters:
+                 - StripPrefix=1
+                 - name: Hystrix
+                   args:
+                      name: fallbackcmd
+                      fallbackUri: forward:/fallback
+                 - name: Retry
+                   args:
+                      retries: 3 #重试次数，默认3，不包含本次
+                      status: 404 #重试response code，默认没有
+                      statusSeries: 500 #重试response code的系列，100（info），200（success），300（redirect），400（client error），500（server error），默认500
+                      method: GET #重试的request请求，默认GET
+            - id: giant-service-qrcode
+              uri: http://docker.for.mac.host.internal:10020
+              predicates:
+                 - Path=/api/**
+              filters:
+                 - StripPrefix=1
+                 - name: Hystrix
+                   args:
+                      name: fallbackcmd
+                      fallbackUri: forward:/fallback
+                 - name: RequestRateLimiter
+                   args:
+                      key-resolver: "#{@remoteAddrKeyResolver}"
+                      redis-rate-limiter.replenishRate: 1 # 令牌桶每秒填充平均速率
+                      redis-rate-limiter.burstCapacity: 5 # 令牌桶总容量
+
+hystrix.command.fallbackcmd.execution.isolation.thread.timeoutInMilliseconds: 5000
+
+giant-service-web-load-balanced-service:
+   ribbon:
+      listOfServers: localhost:10040,localhost:10041
+      NFLoadBalancerRuleClassName: com.netflix.loadbalancer.RoundRobinRule
