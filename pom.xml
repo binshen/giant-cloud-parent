@@ -50,24 +50,18 @@
 
     <profiles>
         <profile>
-            <id>docker</id>
+            <id>dev</id>
             <activation>
                 <activeByDefault>true</activeByDefault>
             </activation>
-            <properties>
-                <profileActive>docker</profileActive>
-            </properties>
-        </profile>
-        <profile>
-            <id>dev</id>
             <properties>
                 <profileActive>dev</profileActive>
             </properties>
         </profile>
         <profile>
-            <id>prod</id>
+            <id>docker</id>
             <properties>
-                <profileActive>prod</profileActive>
+                <profileActive>docker</profileActive>
             </properties>
         </profile>
     </profiles>
