@@ -22,6 +22,12 @@ spring:
                enabled: false
                lowerCaseServiceId: true
          routes:
+            - id: giant-service-web
+              uri: http://localhost:10040
+              predicates:
+                 - Path=/api/**
+              filters:
+                 - StripPrefix=1
             - id: giant-service-tests
               uri: http://localhost:10099
 #              uri: lb://giant-service-web-load-balanced-service
@@ -42,7 +48,7 @@ spring:
             - id: giant-service-qrcode
               uri: http://localhost:10020
               predicates:
-                 - Path=/api/**
+                 - Path=/qrcode/**
               filters:
                  - StripPrefix=1
                  - name: Hystrix
@@ -52,8 +58,8 @@ spring:
                  - name: RequestRateLimiter
                    args:
                       key-resolver: "#{@remoteAddrKeyResolver}"
-                      redis-rate-limiter.replenishRate: 1 # 令牌桶每秒填充平均速率
-                      redis-rate-limiter.burstCapacity: 5 # 令牌桶总容量
+                      redis-rate-limiter.replenishRate: 20  # 令牌桶每秒填充平均速率
+                      redis-rate-limiter.burstCapacity: 100 # 令牌桶总容量
 
 hystrix.command.fallbackcmd.execution.isolation.thread.timeoutInMilliseconds: 5000
 
