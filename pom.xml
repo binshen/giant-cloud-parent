@@ -16,6 +16,7 @@
         <module>giant-cloud-common</module>
         <module>giant-cloud-gateway</module>
         <module>giant-cloud-zipkin</module>
+        <module>giant-cloud-soap</module>
     </modules>
 
     <parent>
